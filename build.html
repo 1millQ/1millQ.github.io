@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build</title>
+    <link rel="icon" href="pifavicon.ico">
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+    
+    <style>
+    body{font-family:Arial;font-size:18px;width:950px;font-weight:normal;background-color:#1D1F21;color:#969896;}
+a:link {
+  color:#F0C674;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:visited {
+  color:#F0C674;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:hover {
+  color:#AB1830;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color:#F0C674;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+
+a:link#Z {
+  color:#81A2BE;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited#Z {
+  color:#81A2BE;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:active#Z {
+  color:#81A2BE;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover#Z {
+  color:#FFA2BE;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+ i{color:#C0C0C0;}
+vv{color:#FD5C61;}
+vs{color:#CFD8DC;}
+
+bb{color:#CFD8DC;font-weight:bold;}
+
+h1{color:#3D5C61;margin:0;}
+h2 { margin: 0; }
+h7{color:#700000;}
+h8{color:#C5C8BC}
+    </style>
+  </head>
+  
+<h1>Build Emu68.img using Raspberry Pi 3/4 <img src="pi25.png" alt="" width="28" height="35"> </h1>
+<br>
+<h8>0)</h8><br>
+Prepare SDCARD using latest image from:<br>
+https://downloads.raspberrypi.org/raspios_arm64/images/ <a href="https://downloads.raspberrypi.org/raspios_arm64/images">Download</a>
+<br><br>
+<h8>1)</h8><br>
+install cmake (3.18.4 or newer) from packetmanager<br>
+<br>
+<h8>2)</h8><br>
+Open terminal (if not already opened)<br>
+
+<br><h8>3)</h8><br>
+<x id="m03">sudo cp /usr/include/aarch64-linux-gnu/gnu/stubs-lp64.h /usr/include/aarch64-linux-gnu/gnu/stubs-lp64_be.h</x><a href="#" ID="Z" onclick="CopyToClipboard('m03');return false;"> &#171;copy</a><br>
+
+
+<br><h8>4)</h8><br>
+<x id="m04">git clone https://github.com/michalsc/Emu68.git</x><a href="#" ID="Z" onclick="CopyToClipboard('m04');return false;"> &#171;copy</a><br>
+cd Emu68<br>
+<x id="n04">git submodule update --init --recursive</x><a href="#" ID="Z" onclick="CopyToClipboard('n04');return false;"> &#171;copy</a><br>
+<br>
+<x id="p04">mkdir build install</x><a href="#" ID="Z" onclick="CopyToClipboard('p04');return false;"> &#171;copy</a><br>
+cd build<br>
+<br><h8>5)</h8><br>
+<x id="m05">cmake .. -DCMAKE_INSTALL_PREFIX=../install -DTARGET=raspi64 -DVARIANT=pistorm</x><a href="#" ID="Z" onclick="CopyToClipboard('m05');return false;"> &#171;copy</a><br>
+
+<br><h8>6)</h8><br>
+make -j4<br>
+
+<br><h8>7)</h8><br>
+next time it is enough to do (from build folder):<br>
+git pull<br>
+make -j4<br><br>
+
+
+<hr><br>
+<h1>800+ MIPS build</h1>
+<h8>in file include\config.h</h8> change following to:<br>
+<vv>EMU68_M68K_INSN_DEPTH</vv> 255<br>
+<vv>EMU68_MAX_LOOP_COUNT</vv> 8<br>
+<vv>EMU68_BRANCH_INLINE_DISTANCE</vv> 4096<br>
+
+<script type="text/javascript">
+  setTimeout(function () {
+    location.reload(true); 
+    }, 600000);
+</script>
+
+<script type="text/javascript">
+function CopyToClipboard(id)
+{
+var r = document.createRange();
+r.selectNode(document.getElementById(id));
+window.getSelection().removeAllRanges();
+window.getSelection().addRange(r);
+document.execCommand('copy');
+window.getSelection().removeAllRanges();
+}
+</script>
+<!-- 
+<script type="text/javascript">
+window.onload = function() {
+ if(!window.location.hash) {
+  window.location = window.location + '#ok';
+  window.location.reload();
+ } 
+}
+</script>
+-->
+
+<!-- src\pistorm\ps_protocol.c  define
+     src\raspi\start_rp64.c  MHz   set_clock_rate(3,1400*1000000);
+     include\config.h  mips
+-->
+
+
+<br>
+<a href="https://pistorm.neocities.org/">Go to main page</a>
+
+  </body>
+</html>
