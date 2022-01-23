@@ -1,9 +1,324 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PiStorm</title>
+    <link rel="icon" href="favicon16.png">
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+    <style>
+    body{font-family:Arial;font-size:18px;width:950px;font-weight:normal;background-color:#1D1F21;color:#969896}
+    
+a:link {
+  color:#F0C674;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:visited {
+  color:#F0C674;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:hover {
+  color:#AB1830;
+  background-color: transparent;
+  text-decoration: unbderline;
+}
+
+a:active {
+  color:#F0C674;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+b{color:#00897B;}
+ba{color:#5DADE2;}
+bb{color:#CFD8DC;font-weight:bold;}
+bd{color:#FF00FF;}
+bg{color:#696969;}
+bv{color:#D2042D;}
+bw{color:#ECF0F1;}
+
+
+bpre{color:#7D5C61;}
+
+nog{color:#3D5C61;}
+prestrong{color:#4169E1;}
+strong{color:#6082B6;}
+
+h1{color:#3D5C6F;margin:0;}
+
+h2{color:#3D5C61;margin:0;}
+h2#HH{color:#FD5C61;margin:0;}
+h2#QB{color:#1F5CF1;margin:0;}
+h2#QQ{color:#3D5C61;margin:0;}
+
+h3#QQ{font-size:22px;color:#00897B;margin:0;}
+
+h5#QQ{font-size:22px;color:#00897B;margin:0;}
+
+ix{color:#C0C0C0;}
+i{color:#C5C8BC;}
+h7{color:#A00000;}
+td {border: 5px solid #707070;background-color:#E8E8E8;font-size:28px;color:#000000;font-weight:bold;height:80px;}
+
+    </style>    
 </head>
-<body>
-Test
-</body>
+  
+<h1>PiStorm Emu68 simple tutorial</h1><br>
+
+<h2 id="HH">SDCARD:</h2>
+Partition for emu68 should be fat32 formated (Emu68 see's it as 0).<br>
+Minimum recommended size for the fat32 partition is ~260 MB.<br><br>
+Download latest <bb>Emu68-pistorm-yyyymmdd-build.zip</bb> <a href="https://github.com/michalsc/Emu68/releases/tag/nightly">here</a>
+<br>and extract all files to sdcard.<br>
+(next time it is enough to copy and replace Emu68.img from latest build)<br>
+
+<br> copy kickstart.rom of your choice (for better performance) <br>
+(byteswapped also supported)<br>
+
+<br> change line in config.txt for example to initramfs kick32a1200.rom <br> 
+(must match kickstart filename on sdcard exactly)<br>
+ <br>It's recommended to use a 1200 kickstart rom for better RAM support and features
+ 
+ <br><br>
+ <b>Additional extra partitions's for Emu68:</b><br>
+ make them a multiple of 504 MB for better performance.<br>
+create and set them to id 0x76 using your favourite partition tool.<br>
+Emu68 see's them as 1,2,3 (if you make three, which is max allowed) <br>
+<table>
+ <tbody>
+  <tr>
+    <th>0</th><th>1</th><th>2</th><th>3</th>
+  </tr>
+  <tr>
+    <td>&nbsp;FAT32&nbsp;</td>
+    <td>&nbsp;0x76&nbsp;</td>
+    <td>&nbsp;&nbsp;&nbsp;0x76&nbsp;&nbsp;&nbsp;</td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x76&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  </tr>
+ </tbody>
+</table>
+Example of three 0x76 partitions that can be uses by Amiga OS.<br><br>
+Random example how to create 3 Amiga drives into 32 GB SDCARD:
+<img src="emu68part4k.png" alt="">
+Each of the 0x76 partitions are individual Amiga drives and each of them can hold multiple Amiga partitions.
+<br><br>
+<b>Amiga harddrive setup:</b><br>
+change hdtoolbox, icon information, tooltypes from scsi.device to<br>
+<bb>brcm-sdhc.device</bb> then hdtoolbox will find them
+<br><a href="https://michalsc.github.io/Emu68/tutorials/SD_Preparation.html">sdcard guide</a>
+<br><br><br>
+
+<h2 id="HH">RTG:</h2>
+<h7>Download latest emu68-vc4.card from discord and copy to LIBS:Picasso96/</h7><br>
+<a href="https://michalsc.github.io/Emu68/tutorials/P96_Setup.html">Setup Guide</a>
+<br>In devs/monitors and tooltypes good defaults are(case sensitive):<br>
+<bb>VC4_SCALER=3</bb><br>
+<bb>VC4_PHASE=128</bb><br>
+<!--<bb>vc4_vert=num</bb> override measured settings with vert frequency (num = 60 / 50 or other) <br> -->
+<br><br>
+
+<h2 id="HH">cmdline.txt</h2>
+consist only from one single text line..so no line breaks. <a href="https://michalsc.github.io/Emu68/Options">Options in more detail</a><br><br>
+
+<h5 id="QQ">Memory</h5>
+<strong>Limit mapped ARM memory to 2 GB(use if >2 GB ram on Pi):</strong><br>
+<i>limit_2g</i><br><br>
+
+<strong>z2 ram:</strong><br>
+<i>z2_ram_size= x</i> (x=0, 1, 2, 4 or 8 (default))<br><br>
+
+<strong>Slow ram:</strong><br>
+<i id="m01">enable_c0_slow</i> 0.5 MB<br>
+<i>enable_c0_slow enable_c8_slow</i> 1.0 MB<br>
+<i>enable_c0_slow enable_c8_slow enable_d0_slow</i> 1.5 MB<br><br>
+
+<strong>Use SLOW ram as CHIP(Uses memory in Expansion slot. Needs min. Agnus 8372A):</strong><br>
+<i>move_slow_to_chip</i> JP2 in default position(no soldering of JP2 on the motherboard needed)<br><br>
+
+<br>
+<h5 id="QQ">emu68-vc4.card</h5>
+<strong>Set amount of VIDEO memory for emu68-vc4.card driver:</strong><br>
+<i>vc4.mem=16</i> (default). Set value to 0 to disable use of video driver<br><br>
+<br>
+<h5 id="QQ">68040.library</h5>
+<strong>Move VBR to end of FAST ram:</strong><br>
+<i>vbr_move</i><br>
++ Slightly faster interrupt handling & fetching address through faster arm memory instead of slower chip ram<br>
+- Classic demos/games may not work<br><br>
+
+<br>
+<h5 id="QQ">Miscellaneous</h5>
+<strong>Disable fpu:</strong><br>
+<i>nofpu</i><br><br>
+
+<strong>Swap df0:</strong><br>
+<i>swap_df0_with_dfx</i> (x=1,2 or 3)<br><br>
+
+
+
+<br>
+<h5 id="QQ">brcm-sdhc.device</h5>
+<strong>Disable switch to 50 MHz speed on SDCARD:</strong><br>
+<i>sd.low_speed</i><br><br>
+
+<strong>Change speed of SDCARD clock(will not work if <i>sd.low_speed</i> is also used):</strong><br>
+<i>sd.clock=50</i> (default). Value can be 50-200 MHz(>50 is overclocking).<br>
+Good values to experiment with (if data corruption) are: 100, 80, 75, 25 <br>
+<br>
+
+<strong>Set verbosity level of brcm-sdhc:</strong><br>
+<i>sd.verbose=x</i> (x=0,1 or 2. Default is 0 = light debug)<br><br>
+
+<strong>Change sd.unit0 (partition0) behaviour of brcm-sdhc.device:</strong><br>
+<i>sd.unit0=ro</i>  read-only. This is the default<br>
+<i>sd.unit0=rw</i>  read-write. Use with care!!!<br>
+<i>sd.unit0=off</i> hidden<br><br>
+
+<strong>Disable brcm-sdhc.device:</strong><br>
+<i>sd.disable</i><!--<bpre> Not yet implemented</bpre>--><br><br>
+
+
+<br>
+<h5 id="QQ">Debugging</h5>
+<strong>Serial debug (2 GPIO pins):</strong><br>
+<i>debug disassemble async_log</i><br>
+(async_log option uses it's own CPU core for logging. Remove if not desirable)<br><br>
+921600 bps 8n1 (any ft232 should do)<br>
+Blue ground. Red (TX) to ft232 RX<br>
+<img src="pi3aplus.png" alt="">
+<br>
+
+<!--
+<br>
+<strong>Serial debug (4 GPIO pins):</strong><br>
+<i></i><br><br>
+ft232h: ad0, ad1, ad3 + ground
+<br><br>
+-->
+
+
+<script type="text/javascript">
+  setTimeout(function () {
+    location.reload(true); 
+    }, 900000);
+</script>
+
+<script type="text/javascript">
+window.onload = function() {
+ if(!window.location.hash) {
+  window.location = window.location + '#emu68';
+  window.location.reload();
+ } 
+}
+</script>
+
+
+
+<hr>
+    <p>For updates go to <a href="https://www.patreon.com/michal_schulz"> Michal Schulz Patreon</a></p>
+	<p>For nightly release's <a href="https://github.com/michalsc/Emu68/releases/tag/nightly"> click here</a></p>
+<hr>
+<h3 id="QQ">Can't get whdload to run?</h3>
+test to set option NOMMU in s:whdload.prefs<br><br>
+
+<h3 id="QQ">Red screen when starting Emu68(Mushashi PiStorm works fine)?</h3>
+test another SDCARD<br><br>
+
+<h3 id="QQ">Can't get Kickstart 1.3 or lower to work?</h3>
+Underclock using <bb>arm_freq=600</bb> (to max 1200) in <bb>config.txt</bb> and kickstart will start every time<br>
+
+<!-- &#8594; -->
+<br>
+
+<h3 id="QQ">I use showconfig and the system crashes!</h3>
+It's a bug in <bb>boards.library</bb>. Download updated one from discord <a href="https://cdn.discordapp.com/attachments/872036106122698752/934235926304018543/boards.library"> here</a> or wait for new release (in 2022) on
+<a href="http://aminet.net/package/util/libs/BoardsLib"> Aminet</a><br><br>
+
+<h3 id="QQ">Is there any way to transfer files fast to Emu68?</h3>
+Copy files to the fat32 partition and afterwards mount it within Emu68 using <a href="http://aminet.net/package/disk/misc/fat95">fat95 </a>
+<br> or
+Start WinUAE as <bb>administrator</bb> and add 0x76 partition(s) using <bb>Add Hard Drive</bb> button<br><br>
+
+
+<h3 id="QQ">How does one mount the Emu68 fat32 partition under Amiga using fat95?</h3>
+<details>
+<summary>Click here for more details</summary>
+1) Copy <a href="http://aminet.net/package/disk/misc/fat95">fat95</a> to L<br>
+2) Create a file and put the following text inside: <a href="FATEMU.txt" download>Download ready-made file here</a><br>
+<bg>
+FileSystem      = L:fat95<br>
+Flags           = 0<br>
+MaxTransfer     = 0x1fe00<br>
+LowCyl          = 0<br>
+HighCyl         = 0<br>
+Surfaces        = 1<br>
+BlocksPerTrack  = 1<br>
+Buffers         = 100<br>
+StackSize       = 8192<br>
+GlobVec         = -1<br>
+Priority        = 5<br></bg>
+3) Add an icon to the file and change tooltypes to: <a href="FATEMU.txt.info.ico" download>Download ready-made file here<bv> and remove .ico file extension</bv></a><br>
+<bg>
+UNIT=0<br>
+DEVICE=brcm-sdhc.device<br>
+DOSTYPE=0x46415401<br>
+ACTIVATE=1<br>
+</bg>
+4) Set following to:<br>
+<ba>Default tool : </ba><bw>C:Mount</bw><br>
+<ba>Stack size   : </ba><bw>4096</bw><br>
+<ba>Start from   : </ba><bw>Workbench</bw><br>
+5) Save<br>
+6) Click the icon to mount
+</details>
+<br>
+
+<h3 id="QQ">How to build Emu68.img using Raspberry Pi?</h3>
+<a href="https://pistorm.neocities.org/build.html">Instructions</a><br>
+<br>
+<h3 id="QQ">How to check if GPIO pins are ok on Raspberry Pi?</h3>
+<details>
+<summary>Click here for more details</summary>
+1) Disconnect Raspberry Pi from Pistorm!<br>
+2) Insert SDCARD with working Raspberry Pi OS / Mushashi PiStorm<br>
+3) Stop PiStorm emulator (if it has been started during boot(sudo pkill emulator))<br>
+4) sudo apt -y install pigpio<br>
+5) wget http://abyz.me.uk/rpi/pigpio/code/gpiotest.zip<br>
+6) unzip gpiotest.zip<br>
+7) sudo pigpiod<br>
+8) ./gpiotest<br>
+9) press enter...should say: <bb>Failed user gpios:none</bb>
+</details>
+<br>
+<h3 id="QQ">How to flash CPLD beta firmware 3.1?</h3>
+<details>
+<summary>Click here for more details</summary>
+1) Download firmware <bd>RTL_Proto3_1_Beta.zip</bd> from discord and unzip it<br>
+2) Insert SDCARD (Raspberry Pi OS / Mushashi PiStorm) and power on Amiga<br>
+3) Stop PiStorm emulator (if it has been started during boot(sudo pkill emulator))<br>
+4) <bb>git clone https://github.com/captain-amygdala/pistorm.git beta31</bb><br>
+5) <bb>cd beta31</bb><br>
+6) <bb>sudo apt-get install openocd</bb> (skip if already installed)<br>
+7) transfer/copy <bd>bitstream.svf</bd> & <bd>EPM_240_bitstream.svf</bd> & <bd>maxv_bitstream.svf</bd> from unzipped file to folder <bb>/beta31/rtl</bb><br>
+8) <bb>./flash.sh</bb>
+</details>
+<br>
+<hr>
+Day number: <span id="daynum"></span>
+<script type="text/javascript">
+Date.prototype.getDOY = function() {
+  var onejan = new Date(this.getFullYear(),0,1);
+  return Math.ceil((this - onejan) / 86400000);
+}
+var today = new Date();
+var daynum = today.getDOY();
+document.getElementById("daynum").innerHTML = daynum;
+</script>
+
+
+  </body>
 </html>
