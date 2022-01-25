@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,8 +40,6 @@ bd{color:#FF00FF;}
 bg{color:#696969;}
 bv{color:#D2042D;}
 bw{color:#ECF0F1;}
-
-
 bpre{color:#7D5C61;}
 
 nog{color:#3D5C61;}
@@ -219,26 +216,34 @@ window.onload = function() {
 }
 </script>
 
-
-
 <hr>
-    <p>For updates go to <a href="https://www.patreon.com/michal_schulz"> Michal Schulz Patreon</a></p>
+  <p>For updates go to <a href="https://www.patreon.com/michal_schulz"> Michal Schulz Patreon</a></p>
 	<p>For nightly release's <a href="https://github.com/michalsc/Emu68/releases/tag/nightly"> click here</a></p>
+	<p>For Michal Schulz twitch stream <a href="https://www.twitch.tv/meehownim"> click here</a></p>
 <hr>
 <h3 id="QQ">Can't get whdload to run?</h3>
 test to set option NOMMU in s:whdload.prefs<br><br>
 
+<h3 id="QQ">Do Emu68 have working Pi Wi-Fi driver for Amiga network?</h3>
+no, not yet (but planned for)
+<br><br>
+
+
 <h3 id="QQ">Red screen when starting Emu68(Mushashi PiStorm works fine)?</h3>
 test another SDCARD<br><br>
 
+<!-- 
+<h3 id="QQ">What Raspberry Pi models does Emu68 + PiStorm currently support?</h3>
+Pi 3A+,  <bg>Pi 3B+(use GPIO pin riser or remove USB port)</bg> ,  Pi Zero 2W, <bv>(not yet Pi 4B,  but is planned for)</bv><br><br>
+-->
 <h3 id="QQ">Can't get Kickstart 1.3 or lower to work?</h3>
 Underclock using <bb>arm_freq=600</bb> (to max 1200) in <bb>config.txt</bb> and kickstart will start every time<br>
 
-<!-- &#8594; -->
+
 <br>
 
 <h3 id="QQ">I use showconfig and the system crashes!</h3>
-It's a bug in <bb>boards.library</bb>. Download updated one from discord <a href="https://cdn.discordapp.com/attachments/872036106122698752/934235926304018543/boards.library"> here</a> or wait for new release (in 2022) on
+It's a bug in <bb>boards.library</bb>. Download temporary fix from discord <a href="https://cdn.discordapp.com/attachments/872036106122698752/934235926304018543/boards.library"> here</a> and wait for official release (in 2022) on
 <a href="http://aminet.net/package/util/libs/BoardsLib"> Aminet</a><br><br>
 
 <h3 id="QQ">Is there any way to transfer files fast to Emu68?</h3>
@@ -251,7 +256,8 @@ Start WinUAE as <bb>administrator</bb> and add 0x76 partition(s) using <bb>Add H
 <details>
 <summary>Click here for more details</summary>
 1) Copy <a href="http://aminet.net/package/disk/misc/fat95">fat95</a> to L<br>
-2) Create a file and put the following text inside: <a href="https://1millq.github.io/FATEMU" download>Download ready-made file here</a><br>
+2) Do the following steps 3 &#8594; 6 or download ready-made <a href="https://1millq.github.io/FATEMU" download>file here</a> and <a href="https://1millq.github.io/FATEMU.info" download>icon file here</a> <br> 
+3) Create a file and put the following text inside:<br>
 <bg>
 FileSystem      = L:fat95<br>
 Flags           = 0<br>
@@ -264,19 +270,19 @@ Buffers         = 100<br>
 StackSize       = 8192<br>
 GlobVec         = -1<br>
 Priority        = 5<br></bg>
-3) Add an icon to the file and change tooltypes to: <a href="https://1millq.github.io/FATEMU.info" download>Download ready-made file here</a><br>
+4) Add an icon to the file and change tooltypes to:<br>
 <bg>
 UNIT=0<br>
 DEVICE=brcm-sdhc.device<br>
 DOSTYPE=0x46415401<br>
 ACTIVATE=1<br>
 </bg>
-4) Set following to:<br>
+5) Set following to:<br>
 <ba>Default tool : </ba><bw>C:Mount</bw><br>
 <ba>Stack size   : </ba><bw>4096</bw><br>
 <ba>Start from   : </ba><bw>Workbench</bw><br>
-5) Save<br>
-6) Click the icon to mount
+6) Save<br>
+7) Click the icon to mount
 </details>
 <br>
 
