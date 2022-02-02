@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build</title>
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+    
+    <style>
+    body{font-family:Arial;font-size:18px;width:1800px;font-weight:normal;background-color:#1D1F21;color:#969896;}
+a:link {
+  color:#F0C674;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:visited {
+  color:#F0C674;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:hover {
+  color:#AB1830;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color:#F0C674;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+
+a:link#Z {
+  color:#81A2BE;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited#Z {
+  color:#81A2BE;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:active#Z {
+  color:#81A2BE;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover#Z {
+  color:#FFA2BE;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+ i{color:#C0C0C0;}
+vv{color:#FD5C61;}
+vs{color:#CFD8DC;}
+
+bb{color:#CFD8DC;font-weight:bold;}
+
+h1{color:#3D5C61;margin:0;}
+h2 { margin: 0; }
+h7{color:#700000;}
+h8{color:#C5C8BC}
+    </style>
+  </head>
+  
+<h1>Install Bebbo GCC</h1>
+<h8> 1) </h8>Open terminal (if not already opened)<br><br>
+
+<h8> 2) </h8><x id="m02">sudo apt install make wget git gcc g++ lhasa libgmp-dev libmpfr-dev libmpc-dev flex bison gettext texinfo ncurses-dev autoconf rsync</x><a href="#" ID="Z" onclick="CopyToClipboard('m02');return false;"> &#171;copy</a><br>
+
+<br><h8> 3) </h8><x id="m03">git clone https://github.com/bebbo/amiga-gcc</x><a href="#" ID="Z" onclick="CopyToClipboard('m03');return false;"> &#171;copy</a><br>
+
+<br><h8> 4) </h8><x id="m04">cd amiga-gcc</x><a href="#" ID="Z" onclick="CopyToClipboard('m04');return false;"> &#171;copy</a><br>
+
+<br><h8> 5) </h8><x id="m05">make update</x><a href="#" ID="Z" onclick="CopyToClipboard('m05');return false;"> &#171;copy</a><br>
+
+<br><h8> 6) </h8><x id="m06">sudo mkdir /opt/amiga</x><a href="#" ID="Z" onclick="CopyToClipboard('m06');return false;"> &#171;copy</a><br>
+
+<br><h8> 7) </h8><x id="m07">sudo chgrp users /opt/amiga</x><a href="#" ID="Z" onclick="CopyToClipboard('m07');return false;"> &#171;copy</a><br>
+
+<br><h8> 8) </h8><x id="m08">sudo chmod 775 /opt/amiga</x><a href="#" ID="Z" onclick="CopyToClipboard('m08');return false;"> &#171;copy</a><br>
+
+<br><h8> 9) </h8><x id="m09">sudo usermod -a -G users ChangeToYourUserName</x><a href="#" ID="Z" onclick="CopyToClipboard('m09');return false;"> &#171;copy</a><br>
+
+<br><h8>10) </h8><x id="m10">make clean</x><a href="#" ID="Z" onclick="CopyToClipboard('m10');return false;"> &#171;copy</a><br>
+
+<br><h8>11) </h8><x id="m11">make clean-prefix</x><a href="#" ID="Z" onclick="CopyToClipboard('m11');return false;"> &#171;copy</a><br>
+
+<br><h8>12) </h8><x id="m12">make all NDK=3.2</x><a href="#" ID="Z" onclick="CopyToClipboard('m12');return false;"> &#171;copy</a><br>
+
+<br><h8>13) </h8><x id="m13">make all-sdk</x><a href="#" ID="Z" onclick="CopyToClipboard('m13');return false;"> &#171;copy</a><br>
+<br><h8>14) </h8>cd ..<br>
+
+
+<hr><br>
+<h1>Emu68-tools</h1>
+
+<br><h8> 1) </h8><x id="r01">git clone https://github.com/michalsc/Emu68-tools</x><a href="#" ID="Z" onclick="CopyToClipboard('r01');return false;"> &#171;copy</a><br>
+
+<br><h8> 2) </h8><x id="r02">cd Emu68-tools</x><a href="#" ID="Z" onclick="CopyToClipboard('r02');return false;"> &#171;copy</a><br>
+
+<br><h8> 3) </h8><x id="r03">mkdir build install</x><a href="#" ID="Z" onclick="CopyToClipboard('r03');return false;"> &#171;copy</a><br>
+
+<br><h8> 4) add text in top of file Emu68-tools/cmake/toolchain.make </h8><x id="rr04">SET(TOOLCHAIN_PATH /opt/amiga)</x><a href="#" ID="Z" onclick="CopyToClipboard('rr04');return false;"> &#171;copy</a><br> 
+
+
+<br><h8> 5) </h8><x id="r04">cd build</x><a href="#" ID="Z" onclick="CopyToClipboard('r04');return false;"> &#171;copy</a><br>
+
+
+<br><h8> 6) </h8><x id="r05">cmake .. -DCMAKE_TOOLCHAIN_FILE=../cmake/toolchain.cmake</x><a href="#" ID="Z" onclick="CopyToClipboard('r05');return false;"> &#171;copy</a><br>
+<!--
+<br><h8> 7) </h8><x id="r05">cmake .. -DCMAKE_INSTALL_PREFIX=../install -DCMAKE_TOOLCHAIN_FILE=../cmake/toolchain.cmake</x><a href="#" ID="Z" onclick="CopyToClipboard('r05');return false;"> &#171;copy</a><br>
+-->
+<br><h8> 7) </h8><x id="r06">make</x><a href="#" ID="Z" onclick="CopyToClipboard('r06');return false;"> &#171;copy</a><br>
+
+
+<hr><br>
+<h1>Tweaks (under construction)</h1>
+<br><h8> 1) </h8><x id="t01">xxd -i 68040.library/68040.bin ../install/68040.h</x><a href="#" ID="Z" onclick="CopyToClipboard('t01');return false;"> &#171;copy</a><br>
+<br><h8> 2) </h8><x id="t02">xxd -i devicetree.resource/devicetree.bin ../install/devicetree.h</x><a href="#" ID="Z" onclick="CopyToClipboard('t02');return false;"> &#171;copy</a><br>
+<br><h8> 3) </h8><x id="t03">xxd -i sdcard.device/brcm-sdhc.bin ../install/sdcard.h</x><a href="#" ID="Z" onclick="CopyToClipboard('t03');return false;"> &#171;copy</a><br>
+<br>
+
+<br>
+<br><h8> 1) cd 68040.library </h8><x id="u01">xxd -i 68040.bin 68040.h</x><a href="#" ID="Z" onclick="CopyToClipboard('u01');return false;"> &#171;copy</a><br>
+<br><h8> 2) cd devicetree.resource </h8><x id="u02">xxd -i devicetree.bin devicetree.h</x><a href="#" ID="Z" onclick="CopyToClipboard('u02');return false;"> &#171;copy</a><br>
+<br><h8> 3) cd sdcard.device </h8><x id="u03">xxd -i brcm-sdhc.bin sdcard.h</x><a href="#" ID="Z" onclick="CopyToClipboard('u03');return false;"> &#171;copy</a><br>
+<br>
+
+
+
+
+<script type="text/javascript">
+  setTimeout(function () {
+    location.reload(true); 
+    }, 900000);
+</script>
+
+<script type="text/javascript">
+window.onload = function() {
+ if(!window.location.hash) {
+  window.location = window.location + '#';
+  window.location.reload();
+ } 
+}
+</script>
+
+<script type="text/javascript">
+function CopyToClipboard(id)
+{
+var r = document.createRange();
+r.selectNode(document.getElementById(id));
+window.getSelection().removeAllRanges();
+window.getSelection().addRange(r);
+document.execCommand('copy');
+window.getSelection().removeAllRanges();
+}
+</script>
+
+
+
+<br>
+<a href="https://pistorm.neocities.org/">Go to main page</a>
+
+  </body>
+</html>
