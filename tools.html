@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -61,7 +60,15 @@ a:hover#Z {
 vv{color:#FD5C61;}
 vs{color:#CFD8DC;}
 
+ba{color:#5DADE2;}
 bb{color:#CFD8DC;font-weight:bold;}
+
+bd{color:#FF00FF;}
+bg{color:#696969;}
+bv{color:#D2042D;}
+bw{color:#ECF0F1;}
+
+ccgr{color:#00897B}
 
 h1{color:#3D5C61;margin:0;}
 h2 { margin: 0; }
@@ -71,9 +78,11 @@ h8{color:#C5C8BC}
   </head>
   
 <h1>Install Bebbo GCC</h1>
-<h8> 1) </h8>Open terminal (if not already opened)<br><br>
+<br><h8> 0) </h8>Open terminal (if not already opened)<br>
 
-<h8> 2) </h8><x id="m02">sudo apt install make wget git gcc g++ lhasa libgmp-dev libmpfr-dev libmpc-dev flex bison gettext texinfo ncurses-dev autoconf rsync</x><a href="#" ID="Z" onclick="CopyToClipboard('m02');return false;"> &#171;copy</a><br>
+<br><h8> 1) update first if needed (Pi3/4) </h8><x id="m01">sudo apt-get update</x><a href="#" ID="Z" onclick="CopyToClipboard('m01');return false;"> &#171;copy</a><br>
+
+<br><h8> 2) </h8><x id="m02">sudo apt install make wget git gcc g++ lhasa libgmp-dev libmpfr-dev libmpc-dev flex bison gettext texinfo ncurses-dev autoconf rsync</x><a href="#" ID="Z" onclick="CopyToClipboard('m02');return false;"> &#171;copy</a><br>
 
 <br><h8> 3) </h8><x id="m03">git clone https://github.com/bebbo/amiga-gcc</x><a href="#" ID="Z" onclick="CopyToClipboard('m03');return false;"> &#171;copy</a><br>
 
@@ -93,7 +102,7 @@ h8{color:#C5C8BC}
 
 <br><h8>11) </h8><x id="m11">make clean-prefix</x><a href="#" ID="Z" onclick="CopyToClipboard('m11');return false;"> &#171;copy</a><br>
 
-<br><h8>12) </h8><x id="m12">make all NDK=3.2</x><a href="#" ID="Z" onclick="CopyToClipboard('m12');return false;"> &#171;copy</a><br>
+<br><h8>12) This step can take up to ~60 minutes on Pi 4(maybe x2 on Pi 3)! </h8><x id="m12">make all NDK=3.2 -j3</x><a href="#" ID="Z" onclick="CopyToClipboard('m12');return false;"> &#171;copy</a><br>
 
 <br><h8>13) </h8><x id="m13">make all-sdk</x><a href="#" ID="Z" onclick="CopyToClipboard('m13');return false;"> &#171;copy</a><br>
 <br><h8>14) </h8>cd ..<br>
@@ -102,15 +111,22 @@ h8{color:#C5C8BC}
 <hr><br>
 <h1>Emu68-tools</h1>
 
+
+<br><h8> 0) cmake is needed later, so install if not present (Pi3/4) </h8><x id="r00">sudo apt install cmake</x><a href="#" ID="Z" onclick="CopyToClipboard('r00');return false;"> &#171;copy</a><br>
+
 <br><h8> 1) </h8><x id="r01">git clone https://github.com/michalsc/Emu68-tools</x><a href="#" ID="Z" onclick="CopyToClipboard('r01');return false;"> &#171;copy</a><br>
 
 <br><h8> 2) </h8><x id="r02">cd Emu68-tools</x><a href="#" ID="Z" onclick="CopyToClipboard('r02');return false;"> &#171;copy</a><br>
 
 <br><h8> 3) </h8><x id="r03">mkdir build install</x><a href="#" ID="Z" onclick="CopyToClipboard('r03');return false;"> &#171;copy</a><br>
 
+<br><h8> 4) Modify line ~ 46 in file <vv>Emu68-tools/cmake/toolchain.make</vv><br>
+<bv>from </bv>set(TOOLCHAIN_PATH_DEFAULT /opt/${TOOLCHAIN_PREFIX})</h8><br>
+<ccgr>to </ccgr><x id="rr04">set(TOOLCHAIN_PATH_DEFAULT "/opt/amiga")</x><a href="#" ID="Z" onclick="CopyToClipboard('rr04');return false;"> &#171;copy</a><br> 
+<!--
 <br><h8> 4) add text in top of file Emu68-tools/cmake/toolchain.make </h8><x id="rr04">SET(TOOLCHAIN_PATH /opt/amiga)</x><a href="#" ID="Z" onclick="CopyToClipboard('rr04');return false;"> &#171;copy</a><br> 
-
-
+-->
+ 
 <br><h8> 5) </h8><x id="r04">cd build</x><a href="#" ID="Z" onclick="CopyToClipboard('r04');return false;"> &#171;copy</a><br>
 
 
@@ -123,10 +139,9 @@ h8{color:#C5C8BC}
 
 <hr><br>
 <h1>Tweaks (under construction)</h1>
-<br><h8> 1) </h8><x id="t01">xxd -i 68040.library/68040.bin ../install/68040.h</x><a href="#" ID="Z" onclick="CopyToClipboard('t01');return false;"> &#171;copy</a><br>
-<br><h8> 2) </h8><x id="t02">xxd -i devicetree.resource/devicetree.bin ../install/devicetree.h</x><a href="#" ID="Z" onclick="CopyToClipboard('t02');return false;"> &#171;copy</a><br>
-<br><h8> 3) </h8><x id="t03">xxd -i sdcard.device/brcm-sdhc.bin ../install/sdcard.h</x><a href="#" ID="Z" onclick="CopyToClipboard('t03');return false;"> &#171;copy</a><br>
-<br>
+<br><h8> 1) </h8><br>
+<br><h8> 2) </h8><br>
+<br><h8> 3) </h8><br>
 
 <br>
 <br><h8> 1) cd 68040.library </h8><x id="u01">xxd -i 68040.bin 68040.h</x><a href="#" ID="Z" onclick="CopyToClipboard('u01');return false;"> &#171;copy</a><br>
@@ -140,7 +155,7 @@ h8{color:#C5C8BC}
 <script type="text/javascript">
   setTimeout(function () {
     location.reload(true); 
-    }, 900000);
+    }, 1900000);
 </script>
 
 <script type="text/javascript">
