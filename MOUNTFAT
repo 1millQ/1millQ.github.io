@@ -1,0 +1,11 @@
+FileSystem      = L:fat95
+Flags           = 0
+MaxTransfer     = 0x1fe00
+LowCyl          = 0
+HighCyl         = 0
+Surfaces        = 1
+BlocksPerTrack  = 1
+Buffers         = 100
+StackSize       = 8192
+GlobVec         = -1
+Priority        = 5
