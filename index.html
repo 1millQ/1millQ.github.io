@@ -241,9 +241,13 @@ Good values to experiment with (if data corruption) are: 100, 80, 75, 25 <br>
 <strong>Serial debug (2 GPIO pins):</strong><br>
 <i>debug disassemble async_log</i><br>
 (async_log option uses it's own CPU core for logging. Remove if not desirable)<br><br>
-921600 bps 8n1 (any ft232 should do)<br>
+921600 bps 8n1 (any ft232 should do. FT232RL-USB-TO-TTL <bv>3.3V</bv>/<strike>5V</strike> in picture below)<br>
 Blue ground. Red (TX) to ft232 RX<br>
-<img src="pi3aplus.png" alt="">
+<!--<img src="pi3aplus.png" alt="">-->
+
+<img style="float: left; margin: 40px 20px 0px 0px;" src="pi3aplus.png" />
+
+<img src="FT232RL_USB_TO_TTL_S10.jpg" alt="">
 <br>
 
 <!--
@@ -318,8 +322,8 @@ BlocksPerTrack  = 1<br>
 Buffers         = 100<br>
 StackSize       = 8192<br>
 GlobVec         = -1<br>
-Priority        = 5<br></bg>
-</div>
+Priority        = 5<br>
+</div></bg>
 4) Add an icon to the file and change tooltypes to:<br>
 <bg>
 <div id="MT">
@@ -334,7 +338,8 @@ ACTIVATE=1<br>
 <ba>Stack size   : </ba><bw>4096</bw><br>
 <ba>Start from   : </ba><bw>Workbench</bw><br>
 6) Save<br>
-7) Click the icon to mount
+7) Click the icon to mount<br><br>
+<bv>Note: change/add <i>sd.unit0=rw</i> in cmdline.txt to enable write (if needed)</bv>
 </details>
 <br>
 
