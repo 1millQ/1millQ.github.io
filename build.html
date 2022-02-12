@@ -78,7 +78,10 @@ Prepare SDCARD using latest image from:<br>
 https://downloads.raspberrypi.org/raspios_arm64/images/ <a href="https://downloads.raspberrypi.org/raspios_arm64/images">Download</a>
 <br><br>
 <h8>1)</h8><br>
-install cmake (3.18.4 or newer) from packetmanager<br>
+install cmake (3.18.4 or newer) from packetmanager or terminal<br>
+<x id="m01">sudo apt install cmake</x><a href="#" ID="Z" onclick="CopyToClipboard('m01');return false;"> &#171;copy</a><br>
+
+
 <br>
 <h8>2)</h8><br>
 Open terminal (if not already opened)<br>
@@ -88,17 +91,16 @@ Open terminal (if not already opened)<br>
 
 
 <br><h8>4)</h8><br>
-<x id="m04">git clone https://github.com/michalsc/Emu68.git</x><a href="#" ID="Z" onclick="CopyToClipboard('m04');return false;"> &#171;copy</a><br>
-cd Emu68<br>
-<x id="n04">git submodule update --init --recursive</x><a href="#" ID="Z" onclick="CopyToClipboard('n04');return false;"> &#171;copy</a><br>
-<br>
-<x id="p04">mkdir build install</x><a href="#" ID="Z" onclick="CopyToClipboard('p04');return false;"> &#171;copy</a><br>
-cd build<br>
+<x id="a04">git clone https://github.com/michalsc/Emu68.git</x><a href="#" ID="Z" onclick="CopyToClipboard('a04');return false;"> &#171;copy</a><br>
+<x id="b04">cd Emu68</x><a href="#" ID="Z" onclick="CopyToClipboard('b04');return false;"> &#171;copy</a><br>
+<x id="c04">git submodule update --init --recursive</x><a href="#" ID="Z" onclick="CopyToClipboard('c04');return false;"> &#171;copy</a><br>
+<x id="d04">mkdir build install</x><a href="#" ID="Z" onclick="CopyToClipboard('d04');return false;"> &#171;copy</a><br>
+<x id="e04">cd build</x><a href="#" ID="Z" onclick="CopyToClipboard('e04');return false;"> &#171;copy</a><br>
 <br><h8>5)</h8><br>
 <x id="m05">cmake .. -DCMAKE_INSTALL_PREFIX=../install -DTARGET=raspi64 -DVARIANT=pistorm</x><a href="#" ID="Z" onclick="CopyToClipboard('m05');return false;"> &#171;copy</a><br>
 
 <br><h8>6)</h8><br>
-make -j4<br>
+<x id="m06">make -j4</x><a href="#" ID="Z" onclick="CopyToClipboard('m06');return false;"> &#171;copy</a><br>
 
 <br><h8>7)</h8><br>
 next time it is enough to do (from build folder):<br>

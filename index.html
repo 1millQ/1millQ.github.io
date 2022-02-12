@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,25 +61,67 @@ h5#QQ{font-size:22px;color:#00897B;margin:0;}
 ix{color:#C0C0C0;}
 i{color:#C5C8BC;}
 h7{color:#A00000;}
-td {border: 5px solid #707070;background-color:#E8E8E8;font-size:28px;color:#000000;font-weight:bold;height:80px;}
+td#bgg{border: 5px solid #707070;background-color:#E8E8E8;font-size:28px;color:#000000;font-weight:bold;height:80px;}
+td#pgm{border: 0 px solid #707070;font-size:16px;color:#778899;font-weight:bold;height:28px;padding-right: 20px;}
 details[open] > summary {
   color: #000000;
+}
+
+div#TT{
+  width: 185px;
+  padding: 8px;
+  border: 5px;
+  border: thick double #696969;
+  margin: 0;
+}
+div#MT{
+  width: 220px;
+  padding: 8px;
+  border: 5px;
+  border: thick double #696969;
+  margin: 0;
 }
     </style>    
 </head>
   
 <h1>PiStorm Emu68 simple tutorial</h1><br>
-<ba>Useful Emu68 programs: </ba><a href="https://1millq.github.io/DeviceTreeTest_1">DeviceTreeTest</a> by Flype 
-<bw>(3 Feb 2022)</bw>, under development<br><br>
-Up to date nightly release's <a href="https://github.com/michalsc/Emu68-tools/releases">Emu68-tools-yyyymmdd-build.zip</a><br><br>
+<ba>Useful Emu68 programs: </ba><br>
 
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <!--
+  <tr>
+    <td id="pgm"><a href="https://1millq.github.io/DeviceTreeTest_1">DeviceTreeTest</a></td>
+    <td id="pgm"><bw>3 Feb 2022</bw></td>
+    <td id="pgm"> by Flype (under development)</td>
+  </tr>
+  -->
+  <tr>
+    <td id="pgm"><a href="https://1millq.github.io/Emu68Info2022.lha">Emu68Info</a></td>
+    <td id="pgm"><bw>9 Feb 2022</bw></td>
+    <td id="pgm"> by Flype (under development)</td>
+  </tr>  
+  <tr>
+    <td id="pgm"><a href="https://github.com/michalsc/Emu68-tools/releases">Emu68-tools</a></td>
+    <td id="pgm"><bw>nightly</bw></td>
+    <td id="pgm"> by Michal Schulz</td>
+  </tr>
+</table>
+<br>
+<!--
+Up to date nightly release's <a href="https://github.com/michalsc/Emu68-tools/releases">Emu68-tools-yyyymmdd-build.zip</a><br><br>
+-->
 <h2 id="HH">SDCARD:</h2>
 Partition for emu68 should be fat32 formated (Emu68 see's it as 0).<br>
 Minimum recommended size for the fat32 partition is ~260 MB.<br>
 <bv>Warning! Don't fill up fat32 partition >95% then Raspberry Pi will not boot!</bv><br>
 <br>
-Download latest <bb>Emu68-pistorm-yyyymmdd-build.zip</bb> <a href="https://github.com/michalsc/Emu68/releases/tag/nightly">here</a>
-<br>and extract all files to sdcard.<br>
+Download latest <a href="https://github.com/michalsc/Emu68/releases/tag/nightly">Emu68-pistorm-yyyymmdd-build.zip</a>
+ and extract all files to sdcard.<br>
 (next time it is enough to copy and replace Emu68.img from latest build)<br>
 
 <br> copy kickstart.rom of your choice (for better performance) <br>
@@ -99,10 +142,10 @@ Emu68 see's them as 1,2,3 (if you make three, which is max allowed) <br>
     <th>0</th><th>1</th><th>2</th><th>3</th>
   </tr>
   <tr>
-    <td>&nbsp;FAT32&nbsp;</td>
-    <td>&nbsp;0x76&nbsp;</td>
-    <td>&nbsp;&nbsp;&nbsp;0x76&nbsp;&nbsp;&nbsp;</td>
-    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x76&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td id="bgg">&nbsp;FAT32&nbsp;</td>
+    <td id="bgg">&nbsp;0x76&nbsp;</td>
+    <td id="bgg">&nbsp;&nbsp;&nbsp;0x76&nbsp;&nbsp;&nbsp;</td>
+    <td id="bgg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x76&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
   </tr>
  </tbody>
 </table>
@@ -121,8 +164,14 @@ change hdtoolbox, icon information, tooltypes from scsi.device to<br>
 <h7>Use latest emu68-vc4.card from Emu68-tools and copy to LIBS:Picasso96/</h7><br>
 <a href="https://michalsc.github.io/Emu68/tutorials/P96_Setup.html">Setup Guide</a>
 <br>In devs/monitors and tooltypes good defaults are(case sensitive):<br>
-<bb>VC4_SCALER=3</bb><br>
+
+<div id="TT">
+<bb>VC4_SCALER=1</bb><br>
 <bb>VC4_PHASE=128</bb><br>
+<bb>VC4_KERNEL=1</bb><br>
+<bb>VC4_KERNEL_B=333</bb><br>
+<bb>VC4_KERNEL_C=333</bb><br>
+</div>
 <!--<bb>vc4_vert=num</bb> override measured settings with vert frequency (num = 60 / 50 or other) <br> -->
 <br><br>
 
@@ -134,7 +183,7 @@ consist only from one single text line..so no line breaks. <a href="https://mich
 <i>limit_2g</i><br><br>
 
 <strong>z2 ram:</strong><br>
-<i>z2_ram_size= x</i> (x=0, 1, 2, 4 or 8 (default)). Set lower if other Zorro II devices are installed in the system<br><br>
+<i>z2_ram_size= x</i> (x=0 (new default), 1, 2, 4 or 8). Set lower if other Zorro II devices are installed in the system<br><br>
 
 <strong>Slow ram:</strong><br>
 <i id="m01">enable_c0_slow</i> 0.5 MB<br>
@@ -203,6 +252,7 @@ Blue ground. Red (TX) to ft232 RX<br>
 <i></i><br><br>
 ft232h: ad0, ad1, ad3 + ground
 <br><br>
+-aer a Emu68
 -->
 
 
@@ -254,9 +304,10 @@ Start WinUAE as <bb>administrator</bb> and add 0x76 partition(s) using <bb>Add H
 <details>
 <summary>Click here for more details</summary>
 1) Copy <a href="http://aminet.net/package/disk/misc/fat95">fat95</a> to L<br>
-2) Do the following steps 3 &#8594; 6 or download ready-made <a href="https://1millq.github.io/FATEMU" download>file here</a> and <a href="https://1millq.github.io/FATEMU.info" download>icon file here</a> <br> 
+2) Do the following steps 3 &#8594; 6 or download ready-made <a href="https://1millq.github.io/MOUNTFAT" download>file here</a> and <a href="https://1millq.github.io/MOUNTFAT.info" download>icon file here</a> <br> 
 3) Create a file and put the following text inside:<br>
 <bg>
+<div id="MT">
 FileSystem      = L:fat95<br>
 Flags           = 0<br>
 MaxTransfer     = 0x1fe00<br>
@@ -268,12 +319,15 @@ Buffers         = 100<br>
 StackSize       = 8192<br>
 GlobVec         = -1<br>
 Priority        = 5<br></bg>
+</div>
 4) Add an icon to the file and change tooltypes to:<br>
 <bg>
+<div id="MT">
 UNIT=0<br>
 DEVICE=brcm-sdhc.device<br>
 DOSTYPE=0x46415401<br>
 ACTIVATE=1<br>
+</div>
 </bg>
 5) Set following to:<br>
 <ba>Default tool : </ba><bw>C:Mount</bw><br>

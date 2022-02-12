@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -69,6 +70,7 @@ bv{color:#D2042D;}
 bw{color:#ECF0F1;}
 
 ccgr{color:#00897B}
+ccbl{color:#81A2BE}
 
 h1{color:#3D5C61;margin:0;}
 h2 { margin: 0; }
@@ -78,9 +80,12 @@ h8{color:#C5C8BC}
   </head>
   
 <h1>Install Bebbo GCC</h1>
+
+<!-- <br><ccbl> &#171;copy</ccbl><bw> = Click to copy text to clipboard</bw><br> -->
+ 
 <br><h8> 0) </h8>Open terminal (if not already opened)<br>
 
-<br><h8> 1) update first if needed (Pi3/4) </h8><x id="m01">sudo apt-get update</x><a href="#" ID="Z" onclick="CopyToClipboard('m01');return false;"> &#171;copy</a><br>
+<br><h8> 1) update first, if needed, (Pi3/4) using </h8><x id="m01">sudo apt-get update</x><a href="#" ID="Z" onclick="CopyToClipboard('m01');return false;"> &#171;copy</a><br>
 
 <br><h8> 2) </h8><x id="m02">sudo apt install make wget git gcc g++ lhasa libgmp-dev libmpfr-dev libmpc-dev flex bison gettext texinfo ncurses-dev autoconf rsync</x><a href="#" ID="Z" onclick="CopyToClipboard('m02');return false;"> &#171;copy</a><br>
 
@@ -102,7 +107,7 @@ h8{color:#C5C8BC}
 
 <br><h8>11) </h8><x id="m11">make clean-prefix</x><a href="#" ID="Z" onclick="CopyToClipboard('m11');return false;"> &#171;copy</a><br>
 
-<br><h8>12) This step can take up to ~60 minutes on Pi 4(maybe x2 on Pi 3)! </h8><x id="m12">make all NDK=3.2 -j3</x><a href="#" ID="Z" onclick="CopyToClipboard('m12');return false;"> &#171;copy</a><br>
+<br><h8>12) <bv>This step can take up to 60 minutes on Pi 4(maybe x2 on Pi 3)! </bv></h8><x id="m12">make all NDK=3.2 -j4</x><a href="#" ID="Z" onclick="CopyToClipboard('m12');return false;"> &#171;copy</a><br>
 
 <br><h8>13) </h8><x id="m13">make all-sdk</x><a href="#" ID="Z" onclick="CopyToClipboard('m13');return false;"> &#171;copy</a><br>
 <br><h8>14) </h8>cd ..<br>
@@ -112,17 +117,21 @@ h8{color:#C5C8BC}
 <h1>Emu68-tools</h1>
 
 
-<br><h8> 0) cmake is needed later, so install if not present (Pi3/4) </h8><x id="r00">sudo apt install cmake</x><a href="#" ID="Z" onclick="CopyToClipboard('r00');return false;"> &#171;copy</a><br>
-
 <br><h8> 1) </h8><x id="r01">git clone https://github.com/michalsc/Emu68-tools</x><a href="#" ID="Z" onclick="CopyToClipboard('r01');return false;"> &#171;copy</a><br>
 
 <br><h8> 2) </h8><x id="r02">cd Emu68-tools</x><a href="#" ID="Z" onclick="CopyToClipboard('r02');return false;"> &#171;copy</a><br>
 
 <br><h8> 3) </h8><x id="r03">mkdir build install</x><a href="#" ID="Z" onclick="CopyToClipboard('r03');return false;"> &#171;copy</a><br>
 
+
+<br><h8> 4) cmake is needed later, so install if not present </h8><x id="r00">sudo apt install cmake</x><a href="#" ID="Z" onclick="CopyToClipboard('r00');return false;"> &#171;copy</a><br>
+
+<!--
 <br><h8> 4) Modify line ~ 46 in file <vv>Emu68-tools/cmake/toolchain.make</vv><br>
 <bv>from </bv>set(TOOLCHAIN_PATH_DEFAULT /opt/${TOOLCHAIN_PREFIX})</h8><br>
 <ccgr>to </ccgr><x id="rr04">set(TOOLCHAIN_PATH_DEFAULT "/opt/amiga")</x><a href="#" ID="Z" onclick="CopyToClipboard('rr04');return false;"> &#171;copy</a><br> 
+-->
+
 <!--
 <br><h8> 4) add text in top of file Emu68-tools/cmake/toolchain.make </h8><x id="rr04">SET(TOOLCHAIN_PATH /opt/amiga)</x><a href="#" ID="Z" onclick="CopyToClipboard('rr04');return false;"> &#171;copy</a><br> 
 -->
@@ -130,7 +139,7 @@ h8{color:#C5C8BC}
 <br><h8> 5) </h8><x id="r04">cd build</x><a href="#" ID="Z" onclick="CopyToClipboard('r04');return false;"> &#171;copy</a><br>
 
 
-<br><h8> 6) </h8><x id="r05">cmake .. -DCMAKE_TOOLCHAIN_FILE=../cmake/toolchain.cmake</x><a href="#" ID="Z" onclick="CopyToClipboard('r05');return false;"> &#171;copy</a><br>
+<br><h8> 6) </h8><x id="r05">cmake .. -DCMAKE_TOOLCHAIN_FILE=../cmake/toolchain.cmake -DTOOLCHAIN_PATH=/opt/amiga</x><a href="#" ID="Z" onclick="CopyToClipboard('r05');return false;"> &#171;copy</a><br>
 <!--
 <br><h8> 7) </h8><x id="r05">cmake .. -DCMAKE_INSTALL_PREFIX=../install -DCMAKE_TOOLCHAIN_FILE=../cmake/toolchain.cmake</x><a href="#" ID="Z" onclick="CopyToClipboard('r05');return false;"> &#171;copy</a><br>
 -->
