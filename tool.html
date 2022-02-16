@@ -57,6 +57,12 @@ a:hover#Z {
   text-decoration: none;
 }
 
+
+details[open] > summary {
+  color: #000000;
+}
+
+
  i{color:#C0C0C0;}
 vv{color:#FD5C61;}
 vs{color:#CFD8DC;}
@@ -72,7 +78,8 @@ bw{color:#ECF0F1;}
 ccgr{color:#00897B}
 ccbl{color:#81A2BE}
 
-h1{color:#3D5C61;margin:0;}
+h3#QQ{font-size:18px;color:#00897B;margin:0;}
+h1{color:#3D5C61;margin:0;line-height: 0.8em;}
 h2 { margin: 0; }
 h7{color:#700000;}
 h8{color:#C5C8BC}
@@ -112,19 +119,68 @@ h8{color:#C5C8BC}
 <br><h8>13) </h8><x id="m13">make all-sdk</x><a href="#" ID="Z" onclick="CopyToClipboard('m13');return false;"> &#171;copy</a><br>
 <br><h8>14) </h8>cd ..<br>
 
+<hr><br>
+<h1>CMAKE</h1>
+<br><h8>1) cmake is needed, so install / build if not present </h8><x id="c01">sudo apt install cmake</x><a href="#" ID="Z" onclick="CopyToClipboard('c01');return false;"> &#171;copy</a><br><br>
+
+<h3 id="QQ">How to build cmake for Ubuntu / Raspberry Pi?</h3>
+<details>
+<summary>Click here for more details</summary>
+<br><h8> <bv>! Step 6 takes ~14 minutes and step 7 takes ~46 minutes on Pi 4 ! </bv></h8><br>
+
+<br><h8> 0) first remove cmake if it's installed </h8><x id="u00">sudo apt-get remove cmake</x><a href="#" ID="Z" onclick="CopyToClipboard('u00');return false;"> &#171;copy</a><br>
+
+<br><h8> 1) </h8><x id="u01">sudo apt-get install build-essential libssl-dev</x><a href="#" ID="Z" onclick="CopyToClipboard('u01');return false;"> &#171;copy</a><br>
+<br><h8> 2) </h8><x id="u02">cd ~</x><a href="#" ID="Z" onclick="CopyToClipboard('u02');return false;"> &#171;copy</a><br>
+<br><h8> 3) </h8><x id="u03">wget https://github.com/Kitware/CMake/releases/download/v3.22.2/cmake-3.22.2.tar.gz</x><a href="#" ID="Z" onclick="CopyToClipboard('u03');return false;"> &#171;copy</a><br>
+<br><h8> 4) </h8><x id="u04">tar -zxvf cmake-3.22.2.tar.gz</x><a href="#" ID="Z" onclick="CopyToClipboard('u04');return false;"> &#171;copy</a><br>
+<br><h8> 5) </h8><x id="u05">cd cmake-3.22.2</x><a href="#" ID="Z" onclick="CopyToClipboard('u05');return false;"> &#171;copy</a><br>
+<br><h8> 6) </h8><x id="u06">./bootstrap</x><a href="#" ID="Z" onclick="CopyToClipboard('u06');return false;"> &#171;copy</a><br>
+<br><h8> 7) </h8><x id="u07">gmake</x><a href="#" ID="Z" onclick="CopyToClipboard('u07');return false;"> &#171;copy</a><br>
+<br><h8> 8) </h8><x id="u08">sudo make install</x><a href="#" ID="Z" onclick="CopyToClipboard('u08');return false;"> &#171;copy</a><br>
+<br><h8> 9) </h8><x id="u09">sudo reboot</x><a href="#" ID="Z" onclick="CopyToClipboard('u09');return false;"> &#171;copy</a><br>
+<br><h8> *) to uninstall in the future use </h8><x id="u10">sudo make uninstall</x><h8> from same folder</h8><a href="#" ID="Z" onclick="CopyToClipboard('u10');return false;"> &#171;copy</a><br>
+
+</details>
+
+
+
+<hr><br>
+<h1>VASM modules</h1>
+
+<br><h8>1) (change <bv>3.18</bv> to your installed version) </h8><x id="s01">cd /usr/share/cmake-3.18/Modules/</x><a href="#" ID="Z" onclick="CopyToClipboard('s01');return false;"> &#171;copy</a><br>
+
+<br><h8>*) or this location if above does not exist (change <bv>3.22</bv> to your installed version) </h8><x id="s21">cd /usr/local/share/cmake-3.22/Modules/</x><a href="#" ID="Z" onclick="CopyToClipboard('s21');return false;"> &#171;copy</a><br>
+
+
+<br><h8>2) </h8><x id="s02">sudo wget https://raw.githubusercontent.com/AmigaPorts/AmigaCMakeCrossToolchains/master/Modules/m68k-amigaos/CMakeASM_VASMInformation.cmake</x><a href="#" ID="Z" onclick="CopyToClipboard('s02');return false;"> &#171;copy</a><br>
+
+<br><h8>3) </h8><x id="s03">sudo wget https://raw.githubusercontent.com/AmigaPorts/AmigaCMakeCrossToolchains/master/Modules/m68k-amigaos/CMakeDetermineASM_VASMCompiler.cmake</x><a href="#" ID="Z" onclick="CopyToClipboard('s03');return false;"> &#171;copy</a><br>
+
+<br><h8>4) </h8><x id="s04">sudo wget https://raw.githubusercontent.com/AmigaPorts/AmigaCMakeCrossToolchains/master/Modules/m68k-amigaos/CMakeTestASM_VASMCompiler.cmake</x><a href="#" ID="Z" onclick="CopyToClipboard('s04');return false;"> &#171;copy</a><br>
 
 <hr><br>
 <h1>Emu68-tools</h1>
 
 
-<br><h8> 1) </h8><x id="r01">git clone https://github.com/michalsc/Emu68-tools</x><a href="#" ID="Z" onclick="CopyToClipboard('r01');return false;"> &#171;copy</a><br>
+<br><h8> 1) </h8><x id="r01">cd ~</x><a href="#" ID="Z" onclick="CopyToClipboard('r01');return false;"> &#171;copy</a><br>
 
-<br><h8> 2) </h8><x id="r02">cd Emu68-tools</x><a href="#" ID="Z" onclick="CopyToClipboard('r02');return false;"> &#171;copy</a><br>
-
-<br><h8> 3) </h8><x id="r03">mkdir build install</x><a href="#" ID="Z" onclick="CopyToClipboard('r03');return false;"> &#171;copy</a><br>
+<br><h8> 2) </h8><x id="r02">git clone https://github.com/michalsc/Emu68-tools</x><a href="#" ID="Z" onclick="CopyToClipboard('r02');return false;"> &#171;copy</a><br>
 
 
-<br><h8> 4) cmake is needed later, so install if not present </h8><x id="r00">sudo apt install cmake</x><a href="#" ID="Z" onclick="CopyToClipboard('r00');return false;"> &#171;copy</a><br>
+
+<br><h8> 3) </h8><x id="r03">cd Emu68-tools</x><a href="#" ID="Z" onclick="CopyToClipboard('r03');return false;"> &#171;copy</a><br>
+
+<br><h8> 4) </h8><x id="r04">git submodule update --init --remote --recursive --merge</x><a href="#" ID="Z" onclick="CopyToClipboard('r04');return false;"> &#171;copy</a><br>
+
+<!--
+<br><h8> 4) </h8><x id="r074">git submodule update --init --recursive && git pull --recurse-submodule</x><a href="#" ID="Z" onclick="CopyToClipboard('r04');return false;"> &#171;copy</a><br>
+-->
+
+
+<br><h8> 5) </h8><x id="r05">mkdir build install</x><a href="#" ID="Z" onclick="CopyToClipboard('r05');return false;"> &#171;copy</a><br>
+
+
 
 <!--
 <br><h8> 4) Modify line ~ 46 in file <vv>Emu68-tools/cmake/toolchain.make</vv><br>
@@ -135,32 +191,36 @@ h8{color:#C5C8BC}
 <!--
 <br><h8> 4) add text in top of file Emu68-tools/cmake/toolchain.make </h8><x id="rr04">SET(TOOLCHAIN_PATH /opt/amiga)</x><a href="#" ID="Z" onclick="CopyToClipboard('rr04');return false;"> &#171;copy</a><br> 
 -->
- 
-<br><h8> 5) </h8><x id="r04">cd build</x><a href="#" ID="Z" onclick="CopyToClipboard('r04');return false;"> &#171;copy</a><br>
+<!--
+<br><h8> *) nano CMakeLists.txt</h8><br>
+<br><h8> *) change <vv>add_subdirectory(Emu68Contribs/Emu68Info)</vv> to <ccgr>#add_subdirectory(Emu68Contribs/Emu68Info)</ccgr> and exit/save</h8><br>
+-->
 
 
-<br><h8> 6) </h8><x id="r05">cmake .. -DCMAKE_TOOLCHAIN_FILE=../cmake/toolchain.cmake -DTOOLCHAIN_PATH=/opt/amiga</x><a href="#" ID="Z" onclick="CopyToClipboard('r05');return false;"> &#171;copy</a><br>
+<br><h8> 6) </h8><x id="r06">cd build</x><a href="#" ID="Z" onclick="CopyToClipboard('r06');return false;"> &#171;copy</a><br>
+
+<br><h8> 7) </h8><x id="r07">cmake .. -DCMAKE_TOOLCHAIN_FILE=../cmake/toolchain.cmake -DTOOLCHAIN_PATH=/opt/amiga</x><a href="#" ID="Z" onclick="CopyToClipboard('r07');return false;"> &#171;copy</a><br>
 <!--
 <br><h8> 7) </h8><x id="r05">cmake .. -DCMAKE_INSTALL_PREFIX=../install -DCMAKE_TOOLCHAIN_FILE=../cmake/toolchain.cmake</x><a href="#" ID="Z" onclick="CopyToClipboard('r05');return false;"> &#171;copy</a><br>
 -->
-<br><h8> 7) </h8><x id="r06">make</x><a href="#" ID="Z" onclick="CopyToClipboard('r06');return false;"> &#171;copy</a><br>
+<br><h8> 8) </h8><x id="r08">make</x><a href="#" ID="Z" onclick="CopyToClipboard('r08');return false;"> &#171;copy</a><br>
 
 
 <hr><br>
 <h1>Tweaks (under construction)</h1>
 <br><h8> 1) </h8><br>
 <br><h8> 2) </h8><br>
-<br><h8> 3) </h8><br>
+
 
 <br>
+<h1>Convert binary to .h files</h1>
 <br><h8> 1) cd 68040.library </h8><x id="u01">xxd -i 68040.bin 68040.h</x><a href="#" ID="Z" onclick="CopyToClipboard('u01');return false;"> &#171;copy</a><br>
 <br><h8> 2) cd devicetree.resource </h8><x id="u02">xxd -i devicetree.bin devicetree.h</x><a href="#" ID="Z" onclick="CopyToClipboard('u02');return false;"> &#171;copy</a><br>
 <br><h8> 3) cd sdcard.device </h8><x id="u03">xxd -i brcm-sdhc.bin sdcard.h</x><a href="#" ID="Z" onclick="CopyToClipboard('u03');return false;"> &#171;copy</a><br>
 <br>
 
 
-
-
+<!--
 <script type="text/javascript">
   setTimeout(function () {
     location.reload(true); 
@@ -175,7 +235,7 @@ window.onload = function() {
  } 
 }
 </script>
-
+-->
 <script type="text/javascript">
 function CopyToClipboard(id)
 {
@@ -189,9 +249,8 @@ window.getSelection().removeAllRanges();
 </script>
 
 
-
 <br>
-<a href="https://pistorm.neocities.org/">Go to main page</a>
+<a href="index.html">Go to main page</a>
 
   </body>
 </html>

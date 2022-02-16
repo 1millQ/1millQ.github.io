@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,13 +103,18 @@ div#MT{
   -->
   <tr>
     <td id="pgm"><a href="https://1millq.github.io/Emu68Info2022.lha">Emu68Info</a></td>
-    <td id="pgm"><bw>9 Feb 2022</bw></td>
+    <td id="pgm"><bw>16 Feb 2022</bw></td>
     <td id="pgm"> by Flype (under development)</td>
   </tr>  
   <tr>
     <td id="pgm"><a href="https://github.com/michalsc/Emu68-tools/releases">Emu68-tools</a></td>
     <td id="pgm"><bw>nightly</bw></td>
-    <td id="pgm">  by Michal Schulz <btiny>(emu68-vc4.card, EmuControl, VC4Tweak, Buddhabrot & SmallPT)</btiny></td>
+    <td id="pgm"> by Michal Schulz <btiny>(emu68-vc4.card, EmuControl, VC4Tweak, Buddhabrot & SmallPT)</btiny></td>
+  </tr>
+  <tr>
+    <td id="pgm"><a href="https://1millq.github.io/Emu2022.adf">Emu2022.adf</a></td>
+    <td id="pgm"><bw>13 Feb 2022</bw></td>
+    <td id="pgm"> ADF file that includes all above<btiny>(+Emu68.img.zip + update scripts using fat95(L folder) and<br> UnZip(C folder). First run MOUNTFAT and then updEmu to upgrade via floppy..when done reboot) </btiny></td>
   </tr>
 </table>
 <br>
@@ -257,6 +263,11 @@ Blue ground. Red (TX) to ft232 RX<br>
 ft232h: ad0, ad1, ad3 + ground
 <br><br>
 -aer a Emu68
+git submodule update --remote --recursive --merge
+
+
+git submodule update --init --remote --recursive --merge && git pull --recurse-submodules
+
 -->
 
 
@@ -348,8 +359,12 @@ Yes! Download from discord <a href="https://discord.com/channels/784428461330530
 
 
 <h3 id="QQ">How to build Emu68.img using Raspberry Pi?</h3>
-<a href="https://pistorm.neocities.org/build.html">Instructions</a><br>
+<a href="build.html">Instructions</a><br>
 <br>
+<h3 id="QQ">How to build Emu68-tools?</h3>
+<a href="tool.html">Instructions</a><br>
+<br>
+
 <h3 id="QQ">How to check if GPIO pins are ok on Raspberry Pi?</h3>
 <details>
 <summary>Click here for more details</summary>
